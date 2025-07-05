@@ -160,7 +160,7 @@
       <option value="sim">Sim, terá outras comidas</option>
     </select>
     <label>Escolha os tipos de salgado que serão servidos:</label>
-    <div class="dropdown">
+    <div class="dropdown" id="dropdownWrapper">
       <div class="dropdown-toggle" id="dropdownToggle" onclick="toggleDropdown()">Clique para selecionar</div>
       <div class="dropdown-options" id="dropdownOptions" style="display:none"></div>
     </div>
@@ -210,10 +210,15 @@
           selectedSalgados.add(idx);
         }
         updateTags();
-        dropdownOptions.style.display = 'none';
       };
       div.textContent = s;
       dropdownOptions.appendChild(div);
+    });
+    document.addEventListener("click", function(event) {
+      const dropdown = document.getElementById("dropdownWrapper");
+      if (!dropdown.contains(event.target)) {
+        dropdownOptions.style.display = "none";
+      }
     });
     function toggleDropdown() {
       dropdownOptions.style.display = dropdownOptions.style.display === 'none' ? 'block' : 'none';
